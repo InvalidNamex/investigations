@@ -23,20 +23,20 @@ class ReadersScreen extends StatelessWidget {
             child: ListView.builder(
               itemBuilder: (context, index) => Obx(
                 () => Container(
-                  color: index == homeController.selectedIndex.value ? Colors.white : null,
+                  color: index == readersController.selectedIndex.value ? Colors.white : null,
                   child: ListTile(
                       title: Text(
                         tiles[index][0],
                         style: const TextStyle(fontFamily: 'almarai', fontWeight: FontWeight.bold),
                       ),
                       leading: tiles[index][1],
-                      autofocus: homeController.selectedIndex.value == 0 ? true : false,
+                      autofocus: readersController.selectedIndex.value == 0 ? true : false,
                       selectedColor: Theme.of(context).primaryColor,
                       selectedTileColor: Theme.of(context).primaryColor,
                       textColor: Colors.black54,
-                      selected: index == homeController.selectedIndex.value,
+                      selected: index == readersController.selectedIndex.value,
                       onTap: () {
-                        homeController.selectedIndex.value = index;
+                        readersController.selectedIndex.value = index;
                         tiles[index][2];
                       }),
                 ),
@@ -57,7 +57,7 @@ class ReadersScreen extends StatelessWidget {
                       Center(
                         child: Column(children: [
                           Image.asset('assets/images/profile.webp', fit: BoxFit.contain, width: 100, height: 150,),
-                          ElevatedButton(onPressed: ()async{await homeController.imagePicker();}, child: const Text('إضافة صورة'),),
+                          ElevatedButton(onPressed: ()async{await readersController.imagePicker();}, child: const Text('إضافة صورة'),),
                         ],),
                       ),
                       // reader name
@@ -66,7 +66,7 @@ class ReadersScreen extends StatelessWidget {
                         child: SizedBox(
                           width: 300,
                           child: TextFormField(
-                            controller: homeController.readerName,
+                            controller: readersController.readerName,
                             maxLines: 1,
                             textAlign: TextAlign.right,
                             decoration: const InputDecoration(
@@ -88,7 +88,7 @@ class ReadersScreen extends StatelessWidget {
                         child: SizedBox(
                           width: 300,
                           child: TextFormField(
-                            controller: homeController.phoneNo,
+                            controller: readersController.phoneNo,
                             maxLines: 1,
                             textAlign: TextAlign.right,
                             keyboardType: TextInputType.number,
@@ -105,7 +105,7 @@ class ReadersScreen extends StatelessWidget {
                         child: SizedBox(
                           width: 150,
                           child: TextFormField(
-                            controller: homeController.tabNo,
+                            controller: readersController.tabNo,
                             maxLines: 1,
                             textAlign: TextAlign.right,
                             keyboardType: TextInputType.number,
@@ -126,7 +126,7 @@ class ReadersScreen extends StatelessWidget {
                       SizedBox(
                         width: 300,
                         child: TextField(
-                          controller: homeController.joinDate,
+                          controller: readersController.joinDate,
                           decoration: const InputDecoration(
                               icon: Icon(Icons.calendar_today), //icon of text field
                               labelText: "تاريخ الالتحاق" //label text of field
@@ -138,7 +138,7 @@ class ReadersScreen extends StatelessWidget {
 
                             if (pickedDate != null) {
                               String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-                              homeController.joinDate.text = formattedDate; //set output date to TextField value.
+                              readersController.joinDate.text = formattedDate; //set output date to TextField value.
                             } else {}
                           },
 
@@ -148,7 +148,7 @@ class ReadersScreen extends StatelessWidget {
                       SizedBox(
                         width: 300,
                         child: TextField(
-                          controller: homeController.leaveDate,
+                          controller: readersController.leaveDate,
                           decoration: const InputDecoration(
                               icon: Icon(Icons.calendar_today), //icon of text field
                               labelText: "تاريخ المغادرة" //label text of field
@@ -160,7 +160,7 @@ class ReadersScreen extends StatelessWidget {
 
                             if (pickedDate != null) {
                               String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-                              homeController.leaveDate.text = formattedDate; //set output date to TextField value.
+                              readersController.leaveDate.text = formattedDate; //set output date to TextField value.
                             } else {}
                           },
                         ),
@@ -175,7 +175,7 @@ class ReadersScreen extends StatelessWidget {
                             // Validate returns true if the form is valid, or false otherwise.
                             if (_formKey.currentState!.validate()){
                               // successful snackbar
-                              await databaseController.insertReader(readerName: homeController.readerName.text,tabNo: int.parse(homeController.tabNo.text),image: homeController.image.text ,joinDate: homeController.joinDate.text,phoneNo: int.parse(homeController.phoneNo.text));
+                              await databaseController.insertReader(readerName: readersController.readerName.text,tabNo: int.parse(readersController.tabNo.text),image: readersController.image.text ,joinDate: readersController.joinDate.text,phoneNo: int.parse(readersController.phoneNo.text));
 
                             }
                           },

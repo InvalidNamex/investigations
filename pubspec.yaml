@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   mysql1: ^0.20.0
   file_picker: ^5.2.2
+  dropdown_textfield:
 dev_dependencies:
   flutter_test:
     sdk: flutter
