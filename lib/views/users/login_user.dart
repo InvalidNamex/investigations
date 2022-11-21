@@ -103,9 +103,9 @@ class UserLogin extends StatelessWidget {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'حقل فارغ';
-                        }
-                        return null;
-                      },
+                      }
+                      return null;
+                    },
                     ),
                   ),
                 ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '/views/investigation_screen.dart';
 import '/views/query_screen.dart';
-import '/views/rating_screen.dart';
-import '/views/readers_screen.dart';
+import '/views/data_screen.dart';
+import 'management_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,20 +14,20 @@ class HomeScreen extends StatelessWidget {
         text: 'استعلام',
       ),
       Tab(
-        text: 'بيانات القراء',
+        text: 'إدارة البيانات',
       ),
       Tab(
         text: 'تحقيقات وجزاءات',
       ),
       Tab(
-        text: 'تقيمات',
-      )
+        text: 'إدارة البرنامج',
+      ),
     ];
     List tabViewChildren = [
       const QueryScreen(),
-      const ReadersScreen(),
+      const DataScreen(),
       const InvestScreen(),
-      const RatingScreen(),
+      const ManagementScreen(),
     ];
     return DefaultTabController(
       length: tabList.length,

@@ -14,10 +14,11 @@ class UsersController extends GetxController {
   TextEditingController userImage = TextEditingController();
   FocusNode searchFocusNode = FocusNode();
   FocusNode textFieldFocusNode = FocusNode();
-  RxList<DropDownValueModel> usersList= <DropDownValueModel>[].obs;
+  RxList<DropDownValueModel> usersList = <DropDownValueModel>[].obs;
+  int userOptions = 5;
   RxBool isImageLoaded = false.obs;
   late File newFile;
-  imagePicker()async{
+  imagePicker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {
       File file = File(result.files.single.path.toString());
