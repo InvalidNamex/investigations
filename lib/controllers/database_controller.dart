@@ -12,8 +12,14 @@ class DatabaseController extends GetxController {
       user: 'root',
       password: '36553203605771Xm@N',
       db: 'investigations');
+  bool checkConn = false;
   initiateDatabase() async {
-    conn = await MySqlConnection.connect(settings);
+    try {
+      conn = await MySqlConnection.connect(settings);
+      checkConn = true;
+    } catch (e) {
+      print('no connection');
+    }
   }
 
   insertReader(
@@ -39,7 +45,6 @@ class DatabaseController extends GetxController {
           id2,
           phoneNo,
         ]);
-    // print("New user's id: ${result.tabNo}");
   }
 
   registerUser(
@@ -61,12 +66,14 @@ class DatabaseController extends GetxController {
   }
 
   Future populateUsersList() async {
-    var n = await conn.query('select userName from users');
-    usersController.usersList.clear();
-    for (var row in n) {
-      if (row[0] != 'root') {
-        usersController.usersList
-            .add(DropDownValueModel(name: row[0], value: row[0]));
+    if (checkConn) {
+      var n = await conn.query('select userName from users');
+      usersController.usersList.clear();
+      for (var row in n) {
+        if (row[0] != 'root') {
+          usersController.usersList
+              .add(DropDownValueModel(name: row[0], value: row[0]));
+        }
       }
     }
   }
